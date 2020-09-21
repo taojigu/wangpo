@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+dependency_overrides:
+  flutter_boost: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
