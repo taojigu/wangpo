@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_boost/flutter_boost.dart';
-import 'package:wangpo/wangpo.dart';
 import 'package:wangpo_example/page/pass_native_block_page.dart';
 
 import 'page/call_native_method_page.dart';
@@ -57,7 +56,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Wangpo.platformVersion;
+      platformVersion = 'Demo';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }

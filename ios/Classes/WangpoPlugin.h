@@ -16,7 +16,7 @@ callback: 执行的callback
  移除注册的Native方法，移除之后，不再被Flutter调用
  method:注册的方法名
  */
-+(void)removeNativeCallback:(NSString *)methodName;
++(void)unregisterNativeCallback:(NSString *)methodName;
 
 
 @end

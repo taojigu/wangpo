@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:wangpo/wangpo_native_message_receiver.dart';
 
 class ReceiveNativeMethodPage extends StatefulWidget {
   @override
-  _ReceiveNativeMethodPageState createState() => _ReceiveNativeMethodPageState();
+  _ReceiveNativeMethodPageState createState() =>
+      _ReceiveNativeMethodPageState();
 }
 
 class _ReceiveNativeMethodPageState extends State<ReceiveNativeMethodPage> {
+  String _textFromNative = 'no message yet';
+  WangpoNativeMessageReceiver _receiver =
+      WangpoNativeMessageReceiver('from/demo/flutter/boost/page');
+  //WangpoNativeListener _listener = Wangpo
+  @override
+  void initState() {
+    super.initState();
+    _receiver.listen((WangpoNativeMessage nativeMessage) {
+      if (nativeMessage.methodName == 'increse') {
+        return _processIncreaseMessage(nativeMessage);
+      }
+
+      if (nativeMessage.methodName == 'decrease') {
+        return _processDecreaseMessage(nativeMessage);
+      }
+      return null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,29 +34,22 @@ class _ReceiveNativeMethodPageState extends State<ReceiveNativeMethodPage> {
         title: Text('接受Native调用Demo页面'),
       ),
       body: ListView(
-        children: <Widget>[
-          _pushPageWidget(context, 'demoTitle', null),
-          _buttonClickWidget(context),
-        ],
+        children: <Widget>[Text(_textFromNative)],
       ),
     );
   }
 
-  Widget _pushPageWidget(
-      BuildContext context, String title, Widget pageWidget) {
-    return RaisedButton(
-      child: Text(title),
-      onPressed: () {
-        Navigator.push(
-            context, new MaterialPageRoute(builder: (context) => pageWidget));
-      },
-    );
+  dynamic _processIncreaseMessage(WangpoNativeMessage nativeMessage) {
+    setState(() {
+      _textFromNative = '来自于Native的数据是 ${nativeMessage.methodParams}';
+    });
+    return 'increase successed';
   }
 
-  Widget _buttonClickWidget(BuildContext context) {
-    return RaisedButton(
-      child: Text('ClickDemo'),
-      onPressed: () {},
-    );
+  dynamic _processDecreaseMessage(WangpoNativeMessage nativeMessage) {
+    setState(() {
+      _textFromNative = '来自于Native的数据是 ${nativeMessage.methodParams}';
+    });
+    return 'decrease Done';
   }
 }

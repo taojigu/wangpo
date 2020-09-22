@@ -8,6 +8,7 @@
 
 #import "PlatformRouterImp.h"
 #import <flutter_boost/FlutterBoost.h>
+#import "DemoFLBFlutterViewContainer.h"
 
 @interface PlatformRouterImp()
 @end
@@ -21,7 +22,7 @@
   completion:(void (^)(BOOL))completion
 {
     BOOL animated = [exts[@"animated"] boolValue];
-    FLBFlutterViewContainer *vc = FLBFlutterViewContainer.new;
+    DemoFLBFlutterViewContainer *vc = DemoFLBFlutterViewContainer.new;
     [vc setName:name params:params];
     [self.navigationController pushViewController:vc animated:animated];
     if(completion) completion(YES);
@@ -33,7 +34,7 @@
   completion:(void (^)(BOOL))completion
 {
     BOOL animated = [exts[@"animated"] boolValue];
-    FLBFlutterViewContainer *vc = FLBFlutterViewContainer.new;
+    DemoFLBFlutterViewContainer *vc = DemoFLBFlutterViewContainer.new;
     [vc setName:name params:params];
     [self.navigationController presentViewController:vc animated:animated completion:^{
         if(completion) completion(YES);

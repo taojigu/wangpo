@@ -74,7 +74,7 @@
 }
 
 -(void)unremoveNaiveCallback {
-    [WangpoPlugin removeNativeCallback:@"refresh/gate/page"];
+    [WangpoPlugin unregisterNativeCallback:@"refresh/gate/page"];
 }
 
 

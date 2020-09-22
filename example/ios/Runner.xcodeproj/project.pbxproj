@@ -21,6 +21,7 @@
 		BF734524251350CC001F5512 /* DemoFlutterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF734523251350CC001F5512 /* DemoFlutterViewController.m */; };
 		BF73452825137055001F5512 /* GateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF73452725137055001F5512 /* GateViewController.m */; };
 		BFC2E72F2518620A0059C0E5 /* PlatformRouterImp.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC2E72E2518620A0059C0E5 /* PlatformRouterImp.m */; };
+		BFCB78432519E3ED0066E76B /* DemoFLBFlutterViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCB78422519E3ED0066E76B /* DemoFLBFlutterViewContainer.m */; };
 		C3F6A4F42EF886074415D209 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A208B71B27C3BBC933890FF /* libPods-Runner.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		BF73452725137055001F5512 /* GateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GateViewController.m; sourceTree = "<group>"; };
 		BFC2E72D2518620A0059C0E5 /* PlatformRouterImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformRouterImp.h; sourceTree = "<group>"; };
 		BFC2E72E2518620A0059C0E5 /* PlatformRouterImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformRouterImp.m; sourceTree = "<group>"; };
+		BFCB78412519E3ED0066E76B /* DemoFLBFlutterViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFLBFlutterViewContainer.h; sourceTree = "<group>"; };
+		BFCB78422519E3ED0066E76B /* DemoFLBFlutterViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFLBFlutterViewContainer.m; sourceTree = "<group>"; };
 		EC8CEB04D2AA0FADC7AF91B8 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +177,8 @@
 				BFC2E72E2518620A0059C0E5 /* PlatformRouterImp.m */,
 				BF734522251350CC001F5512 /* DemoFlutterViewController.h */,
 				BF734523251350CC001F5512 /* DemoFlutterViewController.m */,
+				BFCB78412519E3ED0066E76B /* DemoFLBFlutterViewContainer.h */,
+				BFCB78422519E3ED0066E76B /* DemoFLBFlutterViewContainer.m */,
 			);
 			path = FlutterBoost;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				BF73452825137055001F5512 /* GateViewController.m in Sources */,
 				BF734524251350CC001F5512 /* DemoFlutterViewController.m in Sources */,
 				978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */,
+				BFCB78432519E3ED0066E76B /* DemoFLBFlutterViewContainer.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);

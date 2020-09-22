@@ -7,14 +7,26 @@
 //
 
 #import "DemoFlutterViewController.h"
+#import "WPNativeMessageSender.h"
 
 @interface DemoFlutterViewController ()
+
+@property(nonatomic,strong) WPNativeMessageSender *messageSender;
 
 @end
 
 @implementation DemoFlutterViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _messageSender = [[WPNativeMessageSender alloc] initWithChannelName:@"from/flutter/page" messenger:self.binaryMessenger];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
