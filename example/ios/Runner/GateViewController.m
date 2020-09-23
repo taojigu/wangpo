@@ -48,22 +48,48 @@
 
 -(IBAction)pushPassNativeBlockPage:(id)sender {
     FLBFlutterViewContainer *fbvc = [[FLBFlutterViewContainer alloc] init];
-    [fbvc setName:@"pass/native/block/page" params:@{}];
+    
+    int (^block1)(int) = ^(int value){
+        return 0;
+    };
+    
+    NSString *(^ block2)(NSDictionary *) = ^(id params) {
+        return @"hello";
+    };
+    
+    NSString* blockID1 = [self blockID:block2];
+    
+    
+    //定义官方的block回调
+    //全局变量或者说当前的类内的block管理工具
+    //生成自定义的block identier
+
+    [fbvc setName:@"pass/native/block/page" params:@{
+        
+    }];
     [self.navigationController pushViewController:fbvc animated:YES];
     
+}
+
+- (NSString *)blockID:(id(^)(id))block{
+    return @"hello";
 }
 
 
 -(void)registerNativeCallback {
     
     __weak typeof(self) weakSelf = self;
-    [WangpoPlugin registerNativeCallbak:@"refresh/gate/page" callback:^NSDictionary *(NSDictionary *param) {
-        [weakSelf refreshUI:param];
-        return @{
+    
+    [WangpoPlugin registerNativeCallbak:@"refresh/gate/page" callback:^(NSObject * _Nullable param, FlutterResult  _Nonnull flutterResult) {
+        NSDictionary *dict = (NSDictionary *)param;
+        [weakSelf refreshUI:dict];
+        NSDictionary *resultMap = @{
             @"demoResult":@"RefershFinished"
         };
+        flutterResult(resultMap);
+        return ;
     }];
-    
+
 }
 
 

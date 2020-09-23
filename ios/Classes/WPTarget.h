@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <Flutter/Flutter.h>
 
 //Native 定义的方法类型
-typedef NSDictionary *_Nullable(^WPNativeMethodCallback)(NSDictionary * _Nullable param);
+typedef void (^WPNativeMethodCallback)(NSObject* _Nullable param,FlutterResult _Nonnull flutterResult);
 
 
 NS_ASSUME_NONNULL_BEGIN

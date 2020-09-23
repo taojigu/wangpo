@@ -24,12 +24,8 @@ static NSString* const WPKeyMethodParams = @"methodParams";
     if ([@"callNativeMethod" isEqualToString:call.method]) {
         return [self processCallNativeMethod:call result:result];
     }
-  if ([@"getPlatformVersion" isEqualToString:call.method]) {
-      
-    result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
-  } else {
+    
     result(FlutterMethodNotImplemented);
-  }
 }
 
 
@@ -76,8 +72,7 @@ callback: 执行的callback
         NSAssert(NO, @"no method %@ is register",methodName);
         return;
     }
-    NSDictionary *resultDict = target.nativeMethodCallback(methodParams);
-    result(resultDict);
+    target.nativeMethodCallback(methodParams,result);
     return ;
 }
 
