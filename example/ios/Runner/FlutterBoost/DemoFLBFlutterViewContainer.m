@@ -41,22 +41,22 @@
 - (void)increaseFlutterPage {
     
     NSDictionary *param = @{
-        @"progress":@(self.currentProgress + 1)
+        @"progress":@(self.currentProgress ++)
     };
     
     [self.messageSender invokeFlutterMethod:@"increase" params:param resultBlock:^(id _Nullable result) {
-        
+        NSLog(@"increase result is %@",result);
     }];
     
 }
 
 - (void)decreaseFlutterPage {
     NSDictionary *param = @{
-        @"progress":@(self.currentProgress - 1)
+        @"progress":@(self.currentProgress--)
     };
     [self.messageSender invokeFlutterMethod:@"decrease" params:param resultBlock:^(id _Nullable result) {
-           
-       }];
+           NSLog(@"decrease result is %@",result);
+    }];
 }
 
 /*

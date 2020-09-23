@@ -28,7 +28,7 @@ class WangpoNativeMessageReceiver {
       assert(methodName != null, 'methodName from native should not be nil');
       dynamic methodParam = params['methodParam'];
       WangpoNativeMessage nm = WangpoNativeMessage(methodName, methodParam);
-      dynamic result = await nativeMesaageHandler(nm);
+      dynamic result = nativeMesaageHandler(nm);
       if (result is String) {
         String resultString = result;
         if (resultString == WangpoNativeMessageNotProcessed) {

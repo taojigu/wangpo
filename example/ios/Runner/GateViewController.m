@@ -9,6 +9,7 @@
 #import "GateViewController.h"
 #import "FlutterBoost.h"
 #import "WangpoPlugin.h"
+#import "DemoFLBFlutterViewContainer.h"
 
 @interface GateViewController ()
 
@@ -37,21 +38,18 @@
 }
 
 -(IBAction)pushReceiveNativeMethodPage:(id)sender {
-    [FlutterBoostPlugin open:@"receive/native/method/page" urlParams:@{kPageCallBackId:@"MycallbackId#1"} exts:@{@"animated":@(YES)} onPageFinished:^(NSDictionary *result) {
-        NSLog(@"call me when page finished, and your result is:%@", result);
-    } completion:^(BOOL f) {
-        NSLog(@"page is opened");
-    }];
+    
+    DemoFLBFlutterViewContainer *dflbvc = [[DemoFLBFlutterViewContainer alloc] init];
+    [dflbvc setName:@"receive/native/method/page" params:@{}];
+    [self.navigationController pushViewController:dflbvc animated:YES];
     
 }
 
 
 -(IBAction)pushPassNativeBlockPage:(id)sender {
-    [FlutterBoostPlugin open:@"pass/native/block/page" urlParams:@{kPageCallBackId:@"MycallbackId#1"} exts:@{@"animated":@(YES)} onPageFinished:^(NSDictionary *result) {
-        NSLog(@"call me when page finished, and your result is:%@", result);
-    } completion:^(BOOL f) {
-        NSLog(@"page is opened");
-    }];
+    FLBFlutterViewContainer *fbvc = [[FLBFlutterViewContainer alloc] init];
+    [fbvc setName:@"pass/native/block/page" params:@{}];
+    [self.navigationController pushViewController:fbvc animated:YES];
     
 }
 

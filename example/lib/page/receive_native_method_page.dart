@@ -11,19 +11,18 @@ class _ReceiveNativeMethodPageState extends State<ReceiveNativeMethodPage> {
   String _textFromNative = 'no message yet';
   WangpoNativeMessageReceiver _receiver =
       WangpoNativeMessageReceiver('from/demo/flutter/boost/page');
-  //WangpoNativeListener _listener = Wangpo
   @override
   void initState() {
     super.initState();
     _receiver.listen((WangpoNativeMessage nativeMessage) {
-      if (nativeMessage.methodName == 'increse') {
+      if (nativeMessage.methodName == 'increase') {
         return _processIncreaseMessage(nativeMessage);
       }
 
       if (nativeMessage.methodName == 'decrease') {
         return _processDecreaseMessage(nativeMessage);
       }
-      return null;
+      return WangpoNativeMessageNotProcessed;
     });
   }
 
@@ -43,13 +42,13 @@ class _ReceiveNativeMethodPageState extends State<ReceiveNativeMethodPage> {
     setState(() {
       _textFromNative = '来自于Native的数据是 ${nativeMessage.methodParams}';
     });
-    return 'increase successed';
+    return {'code': 0, 'msg': 'increase successed'};
   }
 
   dynamic _processDecreaseMessage(WangpoNativeMessage nativeMessage) {
     setState(() {
       _textFromNative = '来自于Native的数据是 ${nativeMessage.methodParams}';
     });
-    return 'decrease Done';
+    return {'code': 0, 'msg': 'decrease done'};
   }
 }
