@@ -9,6 +9,7 @@ class PassNativeBlockPage extends StatefulWidget {
 }
 
 class _PassNativeBlockPageState extends State<PassNativeBlockPage> {
+  String _resultText = 'not result yet';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +18,12 @@ class _PassNativeBlockPageState extends State<PassNativeBlockPage> {
       ),
       body: ListView(
         children: <Widget>[
+          Text(_resultText),
           _buttonClickWidget(context),
         ],
       ),
     );
   }
-
 
   Widget _buttonClickWidget(BuildContext context) {
     return RaisedButton(
@@ -31,8 +32,10 @@ class _PassNativeBlockPageState extends State<PassNativeBlockPage> {
         var param = {
           'pageName': 'PassNativeBlockPage',
         };
-        dynamic resultMap = await widget.nativeCallback(param);
-        print('Result String from Native is $resultMap');
+        dynamic result = await widget.nativeCallback(param);
+        setState(() {
+          _resultText = result.toString();
+        });
       },
     );
   }

@@ -49,16 +49,14 @@
 -(IBAction)pushPassNativeBlockPage:(id)sender {
     FLBFlutterViewContainer *fbvc = [[FLBFlutterViewContainer alloc] init];
     
-    int (^block1)(int) = ^(int value){
-        return 0;
+
+    
+    NSDictionary *(^ block2)(NSDictionary *) = ^(id params) {
+        return @{
+            @"dartParam":params,
+            @"nativeBlockResult":@"hello"
+        };
     };
-    
-    NSString *(^ block2)(NSDictionary *) = ^(id params) {
-        return @"hello";
-    };
-    
-    NSString* blockID1 = [self blockID:block2];
-    
     
     //定义官方的block回调
     NSDictionary *blockParam = [self blockParameter:block2];
