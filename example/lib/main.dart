@@ -7,6 +7,7 @@ import 'package:wangpo_example/page/pass_native_block_page.dart';
 
 import 'page/call_native_method_page.dart';
 import 'page/receive_native_method_page.dart';
+import 'package:wangpo/wangpo.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,27 +29,25 @@ class _MyAppState extends State<MyApp> {
       'receive/native/method/page': (pageName, params, _) =>
           ReceiveNativeMethodPage(),
       'pass/native/block/page': (pageName, params, _) {
+        var blockParam = params['blockParam'];
+        String blockKey = blockParam['blockKey'];
+        Future<dynamic> Function(dynamic) block = this.translateBlock(blockKey);
         //执行method转换的方法
         return PassNativeBlockPage(
-          nativeCallback: (param) {
-            return {};
-          },
+          nativeCallback: block,
         );
       }
-      // 'first': (pageName, params, _) => FirstRouteWidget(),
-      // 'second': (pageName, params, _) => SecondRouteWidget(),
-      // 'tab': (pageName, params, _) => TabRouteWidget(),
-      // 'platformView': (pageName, params, _) => PlatformRouteWidget(),
-      // 'flutterFragment': (pageName, params, _) => FragmentRouteWidget(params),
-      // ///可以在native层通过 getContainerParams 来传递参数
-      // 'flutterPage': (pageName, params, _) {
-      //   print("flutterPage params:$params");
-
-      //   return FlutterRouteWidget(params:params);
-      // },
     });
 
     initPlatformState();
+  }
+
+  Future<dynamic> Function(dynamic) translateBlock(String blockKey) {
+    Future<dynamic> Function(dynamic) block = (dynamic param) async {
+      dynamic result = await Wangpo.callNativeMethod(blockKey, param);
+      return result;
+    };
+    return block;
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.

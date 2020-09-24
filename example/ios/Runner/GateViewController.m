@@ -61,14 +61,29 @@
     
     
     //定义官方的block回调
+    NSDictionary *blockParam = [self blockParameter:block2];
+    NSDictionary *params = @{
+        @"name":@"hello block parameter",
+        @"blockParam":blockParam
+    };
     //全局变量或者说当前的类内的block管理工具
     //生成自定义的block identier
-
-    [fbvc setName:@"pass/native/block/page" params:@{
-        
-    }];
+    [fbvc setName:@"pass/native/block/page" params:params];
     [self.navigationController pushViewController:fbvc animated:YES];
     
+}
+
+
+- (NSDictionary *)blockParameter:(id(^)(id))block {
+    NSString * blockKey = [NSUUID UUID].UUIDString;
+    [WangpoPlugin registerNativeCallbak:blockKey callback:^(NSObject * _Nullable param, FlutterResult  _Nonnull flutterResult) {
+        id result = block(param);
+        flutterResult(result);
+    }];
+    
+    return @{
+        @"blockKey": blockKey
+    };
 }
 
 - (NSString *)blockID:(id(^)(id))block{
@@ -83,10 +98,13 @@
     [WangpoPlugin registerNativeCallbak:@"refresh/gate/page" callback:^(NSObject * _Nullable param, FlutterResult  _Nonnull flutterResult) {
         NSDictionary *dict = (NSDictionary *)param;
         [weakSelf refreshUI:dict];
-        NSDictionary *resultMap = @{
-            @"demoResult":@"RefershFinished"
-        };
-        flutterResult(resultMap);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSDictionary *resultMap = @{
+                    @"demoResult":@"RefershFinished"
+                };
+                flutterResult(resultMap);
+        });
+
         return ;
     }];
 
