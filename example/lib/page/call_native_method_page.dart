@@ -35,7 +35,7 @@ class _CallNativeMethodPageState extends State<CallNativeMethodPage> {
           'index': 123,
           'resultData': {'name': 'Frodo', 'age': 35}
         };
-        Map<String, dynamic> resultMap =
+        dynamic resultMap =
             await Wangpo.callNativeMethod('refresh/gate/page', params);
         setState(() {
           _resultString = jsonEncode(resultMap);
